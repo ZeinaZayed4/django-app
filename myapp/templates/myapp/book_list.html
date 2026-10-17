@@ -1,0 +1,26 @@
+{% extends "myapp/base.html" %}
+
+{% block title %}
+    Dot | Books
+{% endblock %}
+
+{% block content %}
+    <h1>All Books</h1>
+
+    {% if books %}
+        <ul class="book-grid">
+            {% for book in books %}
+                <li class="card">
+                    <h2>
+                        <a href="{% url 'dot:book_detail' book.id %}">{{ book.title }}</a>
+                    </h2>
+                    <p class="muted">by {{ book.author|title }}</p>
+                    <p>{{ book.description|truncatechars:100 }}</p>
+                    <p class="price">${{ book.price }}</p>
+                </li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>No books on the shelves right now.</p>
+    {% endif %}
+{% endblock %}

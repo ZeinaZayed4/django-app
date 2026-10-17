@@ -1,64 +1,24 @@
 from django.shortcuts import render
-from django.http import HttpResponse, Http404, HttpResponseRedirect
+from django.http import Http404, HttpResponseRedirect
 from django.urls import reverse
-
-books = {
-    1: {
-        "id": 1,
-        "title": "The Little Prince",
-        "description": "A pilot forced to land in the Sahara meets a little prince. The wise and enchanting stories the prince tells of his own planet with its three volcanoes and a haughty flower are unforgettable. A strange and wonderful parable for all ages, with super illustrations by the author.",
-        "author": "Antoine de Saint-Exupéry",
-        "cover": "",
-        "price": "4.99",
-    },
-    2: {
-        "id": 2,
-        "title": "Becoming Jane Austen",
-        "description": "Jon Spence's fascinating biography of Jane Austen paints an intimate portrait of the much-loved novelist. Spence's meticulous research has, perhaps most notably, uncovered evidence that Austen and the charming young Irishman Tom Lefroy fell in love at the age of twenty and that the relationship inspired Pride and Prejudice, one of the most celebrated works of fiction ever written. Becoming Jane Austen gives the fullest account we have of the romance, which was more serious and more enduring than previously believed. Seeing this love story in the context of Jane Austen's whole life enables us to appreciate the profound effect the relationship had on her art and on subsequent choices that she made in her life.",
-        "author": "Jon Spence",
-        "cover": "",
-        "price": "15.97",
-    },
-    3: {
-        "id": 3,
-        "title": "Little Women",
-        "description": "Generations of readers young and old, male and female, have fallen in love with the March sisters of Louisa May Alcott’s most popular and enduring novel, Little Women. Here are talented tomboy and author-to-be Jo, tragically frail Beth, beautiful Meg, and romantic, spoiled Amy, united in their devotion to each other and their struggles to survive in New England during the Civil War.",
-        "author": "Louisa May Alcott",
-        "cover": "",
-        "price": "30.99",
-    },
-    4: {
-        "id": 4,
-        "title": "Pride and Prejudice",
-        "description": "Pride and Prejudice has charmed generations of readers for more than two centuries. Jane Austen's much-adapted novel is famed for its witty, spirited heroine, sensational romances, and deft remarks on the triumphs and pitfalls of social convention. Author Jane Austen (1775-1817) was an English novelist whose works of social realism achieved unprecedented critical and popular success, though Austen herself remained an anonymous writer throughout her life.",
-        "author": "Jane Austen",
-        "cover": "",
-        "price": "20.49",
-    },
-    5: {
-        "id": 5,
-        "title": "Eat, Pray, Love",
-        "description": "A celebrated writer's irresistible, candid, and eloquent account of her pursuit of worldly pleasure, spiritual devotion, and what she really wanted out of life. Around the time Elizabeth Gilbert turned thirty, she went through an early-onslaught midlife crisis. She had everything an educated, ambitious American woman was supposed to want—a husband, a house, a successful career. But instead of feeling happy and fulfilled, she was consumed with panic, grief, and confusion. She went through a divorce, a crushing depression, another failed love, and the eradication of everything she ever thought she was supposed to be.",
-        "author": "Elizabeth Gilbert",
-        "cover": "",
-        "price": "13.94",
-    },
-}
-
+from .data import books
 
 def index(request):
-    return HttpResponse('Index')
+    return render(request, "myapp/index.html")
 
 def book_list(request):
-    return HttpResponse(books.values())
+    return render(request, "myapp/book_list.html", {"books": books.values()})
 
 def book_detail(request, id: int):
-    content = books.get(id)
+    book = books.get(id)
 
-    if content is None:
+    if book is None:
         raise Http404()
 
-    return HttpResponse(content.values())
+    return render(request, "myapp/book_detail.html", {"book": book})
     
 def old_catalog(request):
     return HttpResponseRedirect(reverse("dot:book_list"))
+
+def not_found(request, exception):
+    return render(request, "myapp/404.html", status=404)

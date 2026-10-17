@@ -1,0 +1,37 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>{% block title %}Dot Bookstore{% endblock %}</title>
+        <link rel="stylesheet" href="{% static 'myapp/styles.css' %}">
+    </head>
+
+    <body id="top">
+        <nav class="site-nav">
+            <a class="brand" href="{% url 'dot:home' %}">Dot Bookstore</a>
+
+            <ul>
+                <li><a href="{% url 'dot:home' %}">Home</a></li>
+                <li><a href="{% url 'dot:book_list' %}">Books</a></li>
+            </ul>
+        </nav>
+
+        <main class="container">
+            {% block content %}
+            {% endblock %}
+        </main>
+
+        <footer class="site-footer">
+            <div>
+                <h4>Dot Bookstore</h4>
+                <p>Your favorite place</p>
+            </div>
+
+            <div>
+                <a href="#top">Back to Top</a>
+            </div>
+        </footer>
+    </body>
+</html>

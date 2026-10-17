@@ -1,0 +1,19 @@
+{% extends "myapp/base.html" %}
+{% load static %}
+
+{% block title %}
+    Dot | {{ book.title }}
+{% endblock %}
+
+{% block content %}
+    <article class="detail">
+        <img class="cover" src="{% static 'myapp/covers/' %}{{ book.cover }}" alt="Cover of {{ book.title }}">
+        <div>
+            <h1>{{ book.title }}</h1>
+            <p class="muted">by {{ book.author }}</p>
+            <p class="price">${{ book.price }}</p>
+            <p>{{ book.description }}</p>
+            <p><a href="{% url 'dot:book_list' %}">&larr; Back to all books</a></p>
+        </div>
+    </article>
+{% endblock %}

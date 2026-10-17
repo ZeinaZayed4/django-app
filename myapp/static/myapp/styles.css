@@ -1,0 +1,162 @@
+:root {
+    --ink: #56657f;
+    --muted: #6b7280;
+    --accent: #c55e32;
+    --paper: #faf7f2;
+    --card: #ffffff;
+    --line: #e5dfd3;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    color: var(--ink);
+    background: var(--paper);
+    line-height: 1.6;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+a {
+    color: var(--accent);
+}
+
+.site-nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1rem 2rem;
+    background-color: var(--ink);
+}
+
+.site-nav .brand {
+    color: #fff;
+    font-size: 1.25rem;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+.site-nav ul {
+    display: flex;
+    gap: 1.5rem;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.site-nav ul a {
+    color: #f3e9dc;
+    text-decoration: none;
+}
+
+.site-nav ul a:hover {
+    text-decoration: underline;
+}
+
+.container {
+    flex: 1;
+    width: 100%;
+    max-width: 960px;
+    margin: 0 auto;
+    padding: 2rem 1.25rem;
+}
+
+.lead {
+    font-size: 1.15rem;
+}
+
+.muted {
+    color: var(--muted);
+}
+
+.price {
+    font-weight: bold;
+    color: var(--accent);
+}
+
+.button {
+    display: inline-block;
+    padding: 0.6rem 1.2rem;
+    background: var(--accent);
+    color: #fff;
+    border-radius: 6px;
+    text-decoration: none;
+}
+
+.book-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: 1.25rem;
+    list-style: none;
+    padding: 0;
+}
+
+.card {
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    padding: 1rem 1.25rem;
+}
+
+.card h2 {
+    font-size: 1.15rem;
+    margin-top: 0;
+}
+
+.detail {
+    display: grid;
+    grid-template-columns: 200px 1fr;
+    gap: 2rem;
+    align-items: start;
+}
+
+.cover {
+    width: 200px;
+    border-radius: 6px;
+}
+
+.cover .placeholder {
+    height: 280px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem;
+    text-align: center;
+    color: #fff;
+    background: var(--accent);
+    font-weight: bold;
+}
+
+.site-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.5rem 2rem;
+    background: var(--ink);
+    color: #f3e9dc;
+}
+
+.site-footer h4,
+.site-footer p {
+    margin: 0;
+}
+
+.site-footer a {
+    color: #f3e9dc;
+}
+
+@media (max-width: 600px) {
+    .detail {
+        grid-template-columns: 1fr;
+    }
+
+    .site-nav {
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+}
